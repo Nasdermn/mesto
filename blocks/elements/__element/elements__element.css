@@ -1,0 +1,6 @@
+.elements__element {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+}
