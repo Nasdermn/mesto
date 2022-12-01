@@ -1,4 +1,5 @@
 .profile__name-edit {
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: 18px;
