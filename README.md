@@ -30,4 +30,4 @@ The project structure currently has 5 main elements - header, profile section
 , elements section, footer and popup window.
 
 ## Ссылка на GitHub Pages (GitHub Pages link):
-https://nasdermn.github.io/Project-Mesto/index.html
+https://nasdermn.github.io/mesto/index.html
