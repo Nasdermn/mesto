@@ -31,54 +31,22 @@
           </button>
         </section>
         <section class="elements">
-          <div class="elements__element">
-            <img src="images/kotlin.png" alt="Остров Котлин" class="elements__picture">
-            <div class="elements__under-picture">
-              <h2 class="elements__text">Котлин</h2>
-              <button class="elements__like elements__like_active" type="button"></button>
+          <template id="elements-template">
+            <div class="elements__element">
+              <button class="elements__remove" type="button"></button>
+              <img src="" alt="" class="elements__picture">
+              <div class="elements__under-picture">
+                <h2 class="elements__text"></h2>
+                <button class="elements__like" type="button"></button>
+              </div>
             </div>
-          </div>
-          <div class="elements__element">
-            <img src="images/karachaevsk.png" alt="Карачаевск" class="elements__picture">
-            <div class="elements__under-picture">
-              <h2 class="elements__text">Карачаевск</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img src="images/mamaev-kurgan.png" alt="Мамаев Курган" class="elements__picture">
-            <div class="elements__under-picture">
-              <h2 class="elements__text">Мамаев Курган</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img src="images/elbrus.png" alt="Эльбрус" class="elements__picture">
-            <div class="elements__under-picture">
-              <h2 class="elements__text">Эльбрус</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img src="images/domby.png" alt="Домбай" class="elements__picture">
-            <div class="elements__under-picture">
-              <h2 class="elements__text">Домбай</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </div>
-          <div class="elements__element">
-            <img src="images/hibins.png" alt="Хибины" class="elements__picture">
-            <div class="elements__under-picture">
-              <h2 class="elements__text">Хибины (Мурманская область)</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </div>
+          </template>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
       </footer>
-      <div class="popup">
+      <div class="popup popup_edit-element">
         <div class="popup__container">
           <button class="popup__cross" type="button"></button>
           <p class="popup__title">Редактировать профиль</p>
@@ -87,6 +55,24 @@
             <input type="text" class="popup__input popup__input_field_description" name="popupdescription" placeholder="Введите описание">
             <button type="submit" class="popup__button">Сохранить</button>
           </form>
+        </div>
+      </div>
+      <div class="popup popup_add-element">
+        <div class="popup__container">
+          <button class="popup__cross" type="button"></button>
+          <p class="popup__title">Новое место</p>
+          <form class="popup__form" name="popupform">
+            <input type="text" class="popup__input popup__input_field_place" name="popupplace" placeholder="Название">
+            <input type="text" class="popup__input popup__input_field_link" name="popuplink" placeholder="Ссылка на картинку">
+            <button type="submit" class="popup__button">Создать</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_full-image">
+        <div class="popup__figure">
+          <img src="" alt="" class="popup__image">
+          <button class="popup__cross" type="button"></button>
+          <figcaption class="popup__figcaption"></figcaption>
         </div>
       </div>
     </div>
