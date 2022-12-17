@@ -1,21 +1,23 @@
 const elements = document.querySelector('.elements');
-const editPopup = document.querySelector('.popup_edit-element');
-const addPopup = document.querySelector('.popup_add-element');
-const editPopupForm = editPopup.querySelector('.popup__form');
-const addPopupForm = addPopup.querySelector('.popup__form');
-const popupName = editPopup.querySelector('.popup__input_field_name');
-const popupDescription = editPopup.querySelector('.popup__input_field_description');
-const popupPlace = addPopup.querySelector('.popup__input_field_place');
-const popupLink = addPopup.querySelector('.popup__input_field_link');
+const popupEditElement = document.querySelector('.popup_edit-element');
+const popupAddElement = document.querySelector('.popup_add-element');
+const popupEditForm = popupEditElement.querySelector('.popup__form');
+const popupAddForm = popupAddElement.querySelector('.popup__form');
+const popupName = popupEditElement.querySelector('.popup__input_field_name');
+const popupDescription = popupEditElement.querySelector('.popup__input_field_description');
+const popupPlace = popupAddElement.querySelector('.popup__input_field_place');
+const popupLink = popupAddElement.querySelector('.popup__input_field_link');
 const popupFullImage = document.querySelector('.popup_full-image');
-const editPopupCross = editPopup.querySelector('.popup__cross');
-const addPopupCross = addPopup.querySelector('.popup__cross');
+const crossPopupEdit = popupEditElement.querySelector('.popup__cross');
+const crossPopupAdd = popupAddElement.querySelector('.popup__cross');
 const imagePopupCross = popupFullImage.querySelector('.popup__cross');
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
+const buttonEdit = document.querySelector('.profile__edit-button');
+const buttonAdd = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const template = document.querySelector('#elements-template').content;
+const popupImage = document.querySelector('.popup__image');
+const popupFigcaption = document.querySelector('.popup__figcaption');
 const initialCards = [
   {
     name: 'Долина гейзеров. Камчатка',
@@ -50,12 +52,10 @@ function createElement(elName, elLink) {
   const elementPicture = element.querySelector('.elements__picture');
   const elementText = element.querySelector('.elements__text');
   const elementLike = element.querySelector('.elements__like');
-  const popupImage = document.querySelector('.popup__image');
-  const popupFigcaption = document.querySelector('.popup__figcaption');
 
-  element.querySelector('.elements__picture').src = elLink;
-  element.querySelector('.elements__picture').alt = elName;
-  element.querySelector('.elements__text').textContent = elName;
+  elementPicture.src = elLink;
+  elementPicture.alt = elName;
+  elementText.textContent = elName;
 
   elementLike.addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like_active');
@@ -66,8 +66,8 @@ function createElement(elName, elLink) {
   })
 
  elementPicture.addEventListener('click', function (evt) {
-    popupOpen(popupFullImage);
-
+    openPopup(popupFullImage);
+    popupImage.alt = evt.target.alt;
     popupImage.src = evt.target.src;
     popupFigcaption.textContent = elementText.textContent;
   })
@@ -89,57 +89,61 @@ function addDefaultElements() {
 addDefaultElements();
 
 //Открытие попапа
-function popupOpen(pop) {
+function openPopup(pop) {
   pop.classList.add('popup_opened');
 }
 //Закрытие попапа
-function popupClose(pop) {
+function closePopup(pop) {
   pop.classList.remove('popup_opened');
 }
 //Сохранение формы
-function popupSave() {
+function savePopup() {
   event.preventDefault();
   profileName.textContent = popupName.value;
   profileDescription.textContent = popupDescription.value;
-  popupClose(editPopup);
+  closePopup(popupEditElement);
 }
 
 //Нажатие на кнопку редактирования профиля
-editButton.addEventListener('click', function(){
-  popupOpen(editPopup);
+buttonEdit.addEventListener('click', function(){
+  openPopup(popupEditElement);
   popupName.value=profileName.textContent;
   popupDescription.value=profileDescription.textContent;
 });
 
 //Нажатие на кнопку добавления элемента
-addButton.addEventListener('click', function(){
-  popupOpen(addPopup);
+buttonAdd.addEventListener('click', function(){
+  openPopup(popupAddElement);
 });
 
 //Нажатие на крестик попапа изменения элемента
-editPopupCross.addEventListener('click', () => {
-  popupClose(editPopup);
+crossPopupEdit.addEventListener('click', () => {
+  closePopup(popupEditElement);
 });
 
 //Нажатие на крестик попапа добавления элемента
-addPopupCross.addEventListener('click', () => {
-  popupClose(addPopup);
+crossPopupAdd.addEventListener('click', () => {
+  popupPlace.value = "";
+  popupLink.value = "";
+  closePopup(popupAddElement);
 })
 
 //Нажатие на крестик попапа просмотра фотографии
 imagePopupCross.addEventListener('click', () => {
-  popupClose(popupFullImage);
+  closePopup(popupFullImage);
 })
 
 //Сохранение изменений формы попапа изменения элемента
-editPopupForm.addEventListener('submit', popupSave);
+popupEditForm.addEventListener('submit', savePopup);
 
 //Сохранение изменений формы попапа добавление элемента
-addPopupForm.addEventListener('submit', () => {
+popupAddForm.addEventListener('submit', () => {
   event.preventDefault();
-  const pl = popupPlace.value;
-  const li = popupLink.value;
-  const elem = createElement(pl, li);
-  addElement(elem);
-  popupClose(addPopup);
+  const place = popupPlace.value;
+  const link = popupLink.value;
+  const element = createElement(place, link);
+  addElement(element);
+  popupPlace.value = "";
+  popupLink.value = "";
+  closePopup(popupAddElement);
 });
