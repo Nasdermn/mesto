@@ -3,10 +3,10 @@ const popupEditElement = document.querySelector('.popup_edit-element');
 const popupAddElement = document.querySelector('.popup_add-element');
 const popupEditForm = popupEditElement.querySelector('.popup__form');
 const popupAddForm = popupAddElement.querySelector('.popup__form');
-const popupName = popupEditElement.querySelector('.popup__input_field_name');
-const popupDescription = popupEditElement.querySelector('.popup__input_field_description');
-const popupPlace = popupAddElement.querySelector('.popup__input_field_place');
-const popupLink = popupAddElement.querySelector('.popup__input_field_link');
+const inputUserName = popupEditElement.querySelector('.popup__input_field_name');
+const inputUserDescription = popupEditElement.querySelector('.popup__input_field_description');
+const inputCardTitle = popupAddElement.querySelector('.popup__input_field_place');
+const inputCardLink = popupAddElement.querySelector('.popup__input_field_link');
 const popupFullImage = document.querySelector('.popup_full-image');
 const crossPopupEdit = popupEditElement.querySelector('.popup__cross');
 const crossPopupAdd = popupAddElement.querySelector('.popup__cross');
@@ -89,26 +89,28 @@ function addDefaultElements() {
 addDefaultElements();
 
 //Открытие попапа
-function openPopup(pop) {
-  pop.classList.add('popup_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
+
 //Закрытие попапа
-function closePopup(pop) {
-  pop.classList.remove('popup_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
+
 //Сохранение формы
-function savePopup() {
+function submitEditProfileForm() {
   event.preventDefault();
-  profileName.textContent = popupName.value;
-  profileDescription.textContent = popupDescription.value;
+  profileName.textContent = inputUserName.value;
+  profileDescription.textContent = inputUserDescription.value;
   closePopup(popupEditElement);
 }
 
 //Нажатие на кнопку редактирования профиля
 buttonEdit.addEventListener('click', function(){
   openPopup(popupEditElement);
-  popupName.value=profileName.textContent;
-  popupDescription.value=profileDescription.textContent;
+  inputUserName.value=profileName.textContent;
+  inputUserDescription.value=profileDescription.textContent;
 });
 
 //Нажатие на кнопку добавления элемента
@@ -123,8 +125,8 @@ crossPopupEdit.addEventListener('click', () => {
 
 //Нажатие на крестик попапа добавления элемента
 crossPopupAdd.addEventListener('click', () => {
-  popupPlace.value = "";
-  popupLink.value = "";
+  inputCardTitle.value = "";
+  inputCardLink.value = "";
   closePopup(popupAddElement);
 })
 
@@ -134,16 +136,16 @@ imagePopupCross.addEventListener('click', () => {
 })
 
 //Сохранение изменений формы попапа изменения элемента
-popupEditForm.addEventListener('submit', savePopup);
+popupEditForm.addEventListener('submit', submitEditProfileForm);
 
 //Сохранение изменений формы попапа добавление элемента
 popupAddForm.addEventListener('submit', () => {
   event.preventDefault();
-  const place = popupPlace.value;
-  const link = popupLink.value;
+  const place = inputCardTitle.value;
+  const link = inputCardLink.value;
   const element = createElement(place, link);
   addElement(element);
-  popupPlace.value = "";
-  popupLink.value = "";
+  inputCardTitle.value = "";
+  inputCardLink.value = "";
   closePopup(popupAddElement);
 });
