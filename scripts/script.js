@@ -1,16 +1,8 @@
+const popups = document.querySelectorAll('.popup');
 const elements = document.querySelector('.elements');
 const popupEditElement = document.querySelector('.popup_edit-element');
 const popupAddElement = document.querySelector('.popup_add-element');
-const popupEditForm = popupEditElement.querySelector('.popup__form');
-const popupAddForm = popupAddElement.querySelector('.popup__form');
-const inputUserName = popupEditElement.querySelector('.popup__input_field_name');
-const inputUserDescription = popupEditElement.querySelector('.popup__input_field_description');
-const inputCardTitle = popupAddElement.querySelector('.popup__input_field_place');
-const inputCardLink = popupAddElement.querySelector('.popup__input_field_link');
 const popupFullImage = document.querySelector('.popup_full-image');
-const crossPopupEdit = popupEditElement.querySelector('.popup__cross');
-const crossPopupAdd = popupAddElement.querySelector('.popup__cross');
-const imagePopupCross = popupFullImage.querySelector('.popup__cross');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
@@ -18,6 +10,20 @@ const profileDescription = document.querySelector('.profile__description');
 const template = document.querySelector('#elements-template').content;
 const popupImage = document.querySelector('.popup__image');
 const popupFigcaption = document.querySelector('.popup__figcaption');
+const popupEditForm = popupEditElement.querySelector('.popup__form');
+const popupAddForm = popupAddElement.querySelector('.popup__form');
+const inputUserName = popupEditElement.querySelector('.popup__input_field_name');
+const inputUserDescription = popupEditElement.querySelector('.popup__input_field_description');
+const inputCardTitle = popupAddElement.querySelector('.popup__input_field_place');
+const inputCardLink = popupAddElement.querySelector('.popup__input_field_link');
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  buttonSelector: '.popup__button',
+  inactiveButtonSelector: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'input-error_active',
+};
 const initialCards = [
   {
     name: 'Долина гейзеров. Камчатка',
@@ -88,14 +94,25 @@ function addDefaultElements() {
 
 addDefaultElements();
 
-//Открытие попапа
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
+//Закрытие попапа на клавишу Escape
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  };
 }
 
 //Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  //Удаление слушателя для закрытия попапа при нажатии клавиши escape
+  document.removeEventListener('keydown', closePopupEsc);
+}
+
+//Открытие попапа
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  //Добавление слушателя для закрытия попапа при нажатии клавиши escape
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 //Сохранение формы
@@ -118,23 +135,6 @@ buttonAdd.addEventListener('click', function(){
   openPopup(popupAddElement);
 });
 
-//Нажатие на крестик попапа изменения элемента
-crossPopupEdit.addEventListener('click', () => {
-  closePopup(popupEditElement);
-});
-
-//Нажатие на крестик попапа добавления элемента
-crossPopupAdd.addEventListener('click', () => {
-  inputCardTitle.value = "";
-  inputCardLink.value = "";
-  closePopup(popupAddElement);
-})
-
-//Нажатие на крестик попапа просмотра фотографии
-imagePopupCross.addEventListener('click', () => {
-  closePopup(popupFullImage);
-})
-
 //Сохранение изменений формы попапа изменения элемента
 popupEditForm.addEventListener('submit', submitEditProfileForm);
 
@@ -149,3 +149,19 @@ popupAddForm.addEventListener('submit', () => {
   inputCardLink.value = "";
   closePopup(popupAddElement);
 });
+
+//Закрытие любого попапа при нажатии на оверлей или крестик
+popups.forEach((popup) =>{
+  popup.addEventListener('click', (evt)=>{
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains("popup__cross")) {
+      //Очистка полей ввода, если мы работаем с попапом, который добавляет новую карточку
+      if (evt.target.classList.contains('popup_add-element')) {
+        inputCardTitle.value = "";
+        inputCardLink.value = "";
+      }
+      closePopup(popup);
+    }
+  });
+});
+
+enableValidation(validationConfig);

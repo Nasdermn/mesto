@@ -50,9 +50,11 @@
         <div class="popup__container">
           <button class="popup__cross" type="button"></button>
           <p class="popup__title">Редактировать профиль</p>
-          <form class="popup__form" name="popupform">
-            <input type="text" class="popup__input popup__input_field_name" name="popupname" placeholder="Введите имя">
-            <input type="text" class="popup__input popup__input_field_description" name="popupdescription" placeholder="Введите описание">
+          <form class="popup__form" name="editform" novalidate>
+            <input id="name-input" type="text" class="popup__input popup__input_field_name" name="popupname" placeholder="Имя" minlength="2" maxlength="40" required>
+            <span class="input-error name-input-error"></span>
+            <input id="description-input" type="text" class="popup__input popup__input_field_description" name="popupdescription" placeholder="Описание" minlength="2" maxlength="200" required>
+            <span class="input-error description-input-error"></span>
             <button type="submit" class="popup__button">Сохранить</button>
           </form>
         </div>
@@ -61,21 +63,24 @@
         <div class="popup__container">
           <button class="popup__cross" type="button"></button>
           <p class="popup__title">Новое место</p>
-          <form class="popup__form" name="popupform">
-            <input type="text" class="popup__input popup__input_field_place" name="popupplace" placeholder="Название">
-            <input type="text" class="popup__input popup__input_field_link" name="popuplink" placeholder="Ссылка на картинку">
+          <form class="popup__form" name="addform" novalidate>
+            <input id="place-input" type="text" class="popup__input popup__input_field_place" name="popupplace" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="input-error place-input-error"></span>
+            <input id="link-input" type="url" class="popup__input popup__input_field_link" name="popuplink" placeholder="Ссылка на картинку" required>
+            <span class="input-error link-input-error"></span>
             <button type="submit" class="popup__button">Создать</button>
           </form>
         </div>
       </div>
       <div class="popup popup_full-image">
         <div class="popup__figure">
-          <img class="popup__image" src="-" alt="Фото элемента">
+          <img class="popup__image" src="" alt="Фото элемента">
           <button class="popup__cross" type="button"></button>
           <figcaption class="popup__figcaption"></figcaption>
         </div>
       </div>
     </div>
+    <script src="scripts/validate.js"></script>
     <script src="scripts/script.js"></script>
   </body>
 </html>
