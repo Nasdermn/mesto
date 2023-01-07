@@ -24,32 +24,6 @@ const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'input-error_active',
 };
-const initialCards = [
-  {
-    name: 'Долина гейзеров. Камчатка',
-    link: 'https://www.eurolux-rostov.ru/wp-content/uploads/2020/07/84114.jpeg'
-  },
-  {
-    name: 'Хибины',
-    link: 'https://sportishka.com/uploads/posts/2022-11/1667576128_34-sportishka-com-p-ozero-goltsovoe-khibini-krasivo-35.jpg'
-  },
-  {
-    name: 'Котлин',
-    link: 'images/kotlin.png'
-  },
-  {
-    name: 'Мамаев Курган',
-    link: 'https://images.unsplash.com/photo-1588424157150-fb13a23a2101?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 //Создание элементов
 function createElement(elName, elLink) {
@@ -133,6 +107,8 @@ buttonEdit.addEventListener('click', function(){
 //Нажатие на кнопку добавления элемента
 buttonAdd.addEventListener('click', function(){
   openPopup(popupAddElement);
+  popupAddForm.reset();
+  toggleButtonState(Array.from(popupAddForm.querySelectorAll(validationConfig.inputSelector)), popupAddForm.querySelector(validationConfig.buttonSelector), validationConfig);
 });
 
 //Сохранение изменений формы попапа изменения элемента
@@ -145,8 +121,6 @@ popupAddForm.addEventListener('submit', () => {
   const link = inputCardLink.value;
   const element = createElement(place, link);
   addElement(element);
-  inputCardTitle.value = "";
-  inputCardLink.value = "";
   closePopup(popupAddElement);
 });
 
@@ -154,11 +128,6 @@ popupAddForm.addEventListener('submit', () => {
 popups.forEach((popup) =>{
   popup.addEventListener('click', (evt)=>{
     if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains("popup__cross")) {
-      //Очистка полей ввода, если мы работаем с попапом, который добавляет новую карточку
-      if (evt.target.classList.contains('popup_add-element')) {
-        inputCardTitle.value = "";
-        inputCardLink.value = "";
-      }
       closePopup(popup);
     }
   });
