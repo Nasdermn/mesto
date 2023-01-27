@@ -1,4 +1,4 @@
-.elements__text {
+.card__text {
   max-width: 220px; /*чтобы кнопка "like" не обрезалась*/
   font-weight: 900;
   font-size: 24px;

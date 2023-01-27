@@ -1,4 +1,4 @@
-export const popupFullImage = document.querySelector('.popup_full-image');
+export const popupFullImage = document.querySelector('.popup_type_image');
 export const popupImage = document.querySelector('.popup__image');
 export const popupFigcaption = document.querySelector('.popup__figcaption');
 

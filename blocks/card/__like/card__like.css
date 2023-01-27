@@ -1,4 +1,4 @@
-.elements__like {
+.card__like {
   cursor: pointer;
   width: 22px;
   height: 19px;
@@ -11,6 +11,6 @@
   /* transition: background-image .5s ease; - для состояния "active" */
 }
 
-.elements__like:hover {
+.card__like:hover {
   opacity: .5;
 }

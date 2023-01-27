@@ -1,39 +1,14 @@
 //ИМПОРТ
+import { initialCards } from './arrays.js';
 import { openPopup, closePopup} from './utils.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
-//ПЕРЕМЕННЫЕ И ОБЪЕКТЫ
-const initialCards = [
-  {
-    name: 'Долина гейзеров. Камчатка',
-    link: 'https://www.eurolux-rostov.ru/wp-content/uploads/2020/07/84114.jpeg'
-  },
-  {
-    name: 'Хибины',
-    link: 'https://sportishka.com/uploads/posts/2022-11/1667576128_34-sportishka-com-p-ozero-goltsovoe-khibini-krasivo-35.jpg'
-  },
-  {
-    name: 'Котлин',
-    link: 'images/kotlin.png'
-  },
-  {
-    name: 'Мамаев Курган',
-    link: 'https://images.unsplash.com/photo-1588424157150-fb13a23a2101?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+//ПЕРЕМЕННЫЕ
 const popups = document.querySelectorAll('.popup');
 const elements = document.querySelector('.elements');
-const popupEditElement = document.querySelector('.popup_edit-element');
-const popupAddElement = document.querySelector('.popup_add-element');
+const popupEditElement = document.querySelector('.popup_type_edit');
+const popupAddElement = document.querySelector('.popup_type_add');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
@@ -52,8 +27,8 @@ const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'input-error_active',
 };
-const validator1 = new FormValidator(validationConfig, popupEditForm);
-const validator2 = new FormValidator(validationConfig, popupAddForm);
+const profileEditFormValidator = new FormValidator(validationConfig, popupEditForm);
+const profileAddFormValidator = new FormValidator(validationConfig, popupAddForm);
 
 //ФУНКЦИИ
 
@@ -63,6 +38,13 @@ function submitEditProfileForm() {
   profileName.textContent = inputUserName.value;
   profileDescription.textContent = inputUserDescription.value;
   closePopup(popupEditElement);
+}
+
+//Создание карточки
+function createCard(data, templateType) {
+  const card = new Card(data, templateType);
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
 //СЛУШАТЕЛИ
@@ -77,7 +59,7 @@ buttonEdit.addEventListener('click', function(){
 buttonAdd.addEventListener('click', function(){
   openPopup(popupAddElement);
   popupAddForm.reset();
-  validator1.toggleButtonState(Array.from(popupAddForm.querySelectorAll(validationConfig.inputSelector)), popupAddForm.querySelector(validationConfig.buttonSelector), validationConfig);
+  profileAddFormValidator.resetValidation();
 });
 
 //Сохранение изменений формы попапа изменения элемента
@@ -90,8 +72,7 @@ popupAddForm.addEventListener('submit', () => {
     name: inputCardTitle.value,
     link: inputCardLink.value,
   }
-  const element = new Card(obj, '.template_type_default');
-  const cardElement = element.generateCard();
+  const cardElement = createCard(obj, '.template_type_default');
   elements.prepend(cardElement);
   closePopup(popupAddElement);
 });
@@ -108,10 +89,9 @@ popups.forEach((popup) =>{
 //ИСПОЛНЕНИЕ
 
 initialCards.forEach((item) => {
-  const card = new Card(item, '.template_type_default');
-  const cardElement = card.generateCard();
+  const cardElement = createCard(item, '.template_type_default');
   elements.prepend(cardElement);
 });
 
-validator1.enableValidation();
-validator2.enableValidation();
+profileEditFormValidator.enableValidation();
+profileAddFormValidator.enableValidation();

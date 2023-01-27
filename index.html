@@ -31,22 +31,12 @@
           </button>
         </section>
         <section class="elements">
-          <template id="elements-template" class="template_type_default">
-            <div class="elements__element">
-              <button class="elements__remove" type="button"></button>
-              <img class="elements__picture" src="-" alt="Фото элемента">
-              <div class="elements__under-picture">
-                <h2 class="elements__text"></h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </div>
-          </template>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
       </footer>
-      <div class="popup popup_edit-element">
+      <div class="popup popup_type_edit">
         <div class="popup__container">
           <button class="popup__cross" type="button"></button>
           <p class="popup__title">Редактировать профиль</p>
@@ -59,7 +49,7 @@
           </form>
         </div>
       </div>
-      <div class="popup popup_add-element">
+      <div class="popup popup_type_add">
         <div class="popup__container">
           <button class="popup__cross" type="button"></button>
           <p class="popup__title">Новое место</p>
@@ -72,7 +62,7 @@
           </form>
         </div>
       </div>
-      <div class="popup popup_full-image">
+      <div class="popup popup_type_image">
         <div class="popup__figure">
           <img class="popup__image" src="Фото" alt="Фото элемента">
           <button class="popup__cross" type="button"></button>
@@ -80,6 +70,16 @@
         </div>
       </div>
     </div>
+    <template id="card-template" class="template_type_default">
+      <div class="card">
+        <button class="card__remove" type="button"></button>
+        <img class="card__picture" src="-" alt="Фото элемента">
+        <div class="card__under-picture">
+          <h2 class="card__text"></h2>
+          <button class="card__like" type="button"></button>
+        </div>
+      </div>
+    </template>
     <script type = "module" src="scripts/utils.js"></script>
     <script type = "module" src="scripts/index.js"></script>
     <script type = "module" src="scripts/FormValidator.js"></script> -->

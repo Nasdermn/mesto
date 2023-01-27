@@ -9,6 +9,8 @@ export default class FormValidator {
     this._inactiveButtonSelector = this._config.inactiveButtonSelector;
     this._inputErrorClass = this._config.inputErrorClass;
     this._errorClass = this._config.errorClass;
+    this._inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._button = this._formElement.querySelector(this._buttonSelector);
   }
 
   _showInputError(input, errorMessage) {
@@ -52,18 +54,23 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    const inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const button = this._formElement.querySelector(this._buttonSelector);
-    this.toggleButtonState(inputs, button);
-    inputs.forEach((input) => {
+    this.toggleButtonState(this._inputs, this._button);
+    this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._isValid(input);
-        this.toggleButtonState(inputs, button);
+        this.toggleButtonState(this._inputs, this._button);
       });
     });
   }
 
   enableValidation() {
       this._setEventListeners();
+  }
+
+  resetValidation() {
+    this.toggleButtonState(this._inputs, this._button);
+    this._inputs.forEach((input) => {
+      this._hideInputError(input);
+    })
   }
 }
