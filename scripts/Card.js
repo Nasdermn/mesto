@@ -53,7 +53,7 @@ export default class Card {
   _handleOpenPicture() {
     popupImage.alt = this._name;
     popupImage.src = this._link;
-    popupFigcaption.textContent = this._text.textContent;
+    popupFigcaption.textContent = this._name;
     openPopup(popupFullImage);
   }
 }
