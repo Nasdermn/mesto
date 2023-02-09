@@ -1,3 +1,5 @@
+import kotlinImage from '../images/kotlin.png';
+
 export const initialCards = [
   {
     name: 'Долина гейзеров. Камчатка',
@@ -9,7 +11,7 @@ export const initialCards = [
   },
   {
     name: 'Котлин',
-    link: 'images/kotlin.png'
+    link: kotlinImage
   },
   {
     name: 'Мамаев Курган',

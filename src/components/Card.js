@@ -1,4 +1,4 @@
-import { popupFullImage, openPopup, popupImage, popupFigcaption } from "./utils.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
   constructor(data, templateSelector) {
@@ -38,7 +38,7 @@ export default class Card {
     })
 
     this._image.addEventListener('click', () => {
-      this._handleOpenPicture();
+      this.handleCardClick();
     })
   }
 
@@ -50,10 +50,8 @@ export default class Card {
     this._element.remove();
   }
 
-  _handleOpenPicture() {
-    popupImage.alt = this._name;
-    popupImage.src = this._link;
-    popupFigcaption.textContent = this._name;
-    openPopup(popupFullImage);
+  handleCardClick() {
+    const PopupImg = new PopupWithImage('.popup_type_image');
+    PopupImg.open(this._name, this._link);
   }
 }
