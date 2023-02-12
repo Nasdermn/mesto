@@ -1,4 +1,5 @@
 //ИМПОРТ
+import { elements, validationConfig, buttonEdit, buttonAdd, profileName, profileDescription } from '../utils/constants.js';
 import { initialCards } from '../utils/constants.js';
 import { createCard } from '../utils/utils.js';
 import FormValidator from '../components/FormValidator.js';
@@ -6,36 +7,32 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css';
+import PopupWithImage from '../components/PopupWithImage.js';
 
-//ПЕРЕМЕННЫЕ
-const elements = document.querySelector('.elements');
-const buttonEdit = document.querySelector('.profile__edit-button');
-const buttonAdd = document.querySelector('.profile__add-button');
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  buttonSelector: '.popup__button',
-  inactiveButtonSelector: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'input-error_active',
-};
+//КЛАССЫ
+const cardList = new Section({
+  items: initialCards,
+  renderer: (cardElement) => {
+    cardList.addItem(createCard(cardElement, '.template_type_default'));
+    },
+}, elements);
+
+cardList.renderItems();
 
 const user = new UserInfo('.profile__name', '.profile__description');
 
-//сделать
+export const popupWithImage = new PopupWithImage('.popup_type_image');
+
 const popupAddElement = new PopupWithForm('.popup_type_add', 
     (formData) => {
       const card = createCard(formData, '.template_type_default');
-      elements.prepend(card);
-    }
+      cardList.addItem(card);
+    }, () => {return {}}
 );
 
 const popupEditProfile = new PopupWithForm('.popup_type_edit',
   (formData) => {
-    profileName.textContent = formData.username;
-    profileDescription.textContent = formData.description;
+    user.setUserInfo(formData.username, formData.description);
   }, user.getUserInfo.bind(user)
 );
 
@@ -45,9 +42,9 @@ profileEditFormValidator.enableValidation();
 profileAddFormValidator.enableValidation();
 
 //СЛУШАТЕЛИ
+
 //Нажатие на кнопку редактирования профиля
 buttonEdit.addEventListener('click', function(){
-  // const {name, description} = user.getUserInfo();
   popupEditProfile.open();
 });
 
@@ -56,13 +53,3 @@ buttonAdd.addEventListener('click', function(){
   popupAddElement.open();
   profileAddFormValidator.resetValidation();
 });
-
-//Создание дефолтных карточек
-const cardList = new Section({
-  items: initialCards,
-  renderer: (cardElement) => {
-    cardList.addItem(createCard(cardElement, '.template_type_default'));
-    },
-}, elements);
-
-cardList.renderItems();

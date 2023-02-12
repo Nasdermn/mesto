@@ -3,7 +3,7 @@ import kotlinImage from '../images/kotlin.png';
 export const initialCards = [
   {
     name: 'Долина гейзеров. Камчатка',
-    link: 'https://www.eurolux-rostov.ru/wp-content/uploads/2020/07/84114.jpeg'
+    link: 'https://www.eurolux-rostov.ru/wp-content/uploads/2020/07/84114.jpeg' 
   },
   {
     name: 'Хибины',
@@ -26,3 +26,17 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+export const elements = document.querySelector('.elements');
+export const buttonEdit = document.querySelector('.profile__edit-button');
+export const buttonAdd = document.querySelector('.profile__add-button');
+export const profileName = document.querySelector('.profile__name');
+export const profileDescription = document.querySelector('.profile__description');
+export const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  buttonSelector: '.popup__button',
+  inactiveButtonSelector: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'input-error_active',
+};
