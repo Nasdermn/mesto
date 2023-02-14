@@ -27,13 +27,13 @@ const popupAddElement = new PopupWithForm('.popup_type_add',
     (formData) => {
       const card = createCard(formData, '.template_type_default');
       cardList.addItem(card);
-    }, () => {return {}}
+    }
 );
 
 const popupEditProfile = new PopupWithForm('.popup_type_edit',
   (formData) => {
     user.setUserInfo(formData.username, formData.description);
-  }, user.getUserInfo.bind(user)
+  }
 );
 
 const profileEditFormValidator = new FormValidator(validationConfig, editform);
@@ -45,7 +45,11 @@ profileAddFormValidator.enableValidation();
 
 //Нажатие на кнопку редактирования профиля
 buttonEdit.addEventListener('click', function(){
+  popupEditProfile.inputList.forEach((input) => {
+        input.value = user.getUserInfo()[input.name];
+  })
   popupEditProfile.open();
+  profileEditFormValidator.resetValidation();
 });
 
 //Нажатие на кнопку добавления элемента
