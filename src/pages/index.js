@@ -45,8 +45,9 @@ profileAddFormValidator.enableValidation();
 
 //Нажатие на кнопку редактирования профиля
 buttonEdit.addEventListener('click', function(){
+  const info = user.getUserInfo();
   popupEditProfile.inputList.forEach((input) => {
-        input.value = user.getUserInfo()[input.name];
+    input.value = info[input.name];
   })
   popupEditProfile.open();
   profileEditFormValidator.resetValidation();
