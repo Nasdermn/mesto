@@ -1,0 +1,10 @@
+.profile__symbol_pencil_type_avatar {
+  width: 26px;
+  height: 26px;
+  opacity: 0;
+  transition: all .6s ease;
+}
+
+.profile__avatar:hover .profile__symbol_pencil_type_avatar {
+  opacity: 1;
+}

@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="ru">
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Dan Causelove">
     <title>Проект "Место"</title>
   </head>
+
   <body class="body">
+
     <div class="page">
+
       <header class="header">
         <img src="<%=require('./images/logo.svg')%>" alt="Проект Место" class="header__logo">
       </header>
+
       <main class ="content">
+
         <section class="profile">
           <div class="profile__person">
-            <img src="<%=require('./images/jack.png')%>" alt="Жак-Ив Кусто" class="profile__avatar">
+            <button class="profile__avatar" type="button">
+              <img src="<%=require('./images/pencil.svg')%>" alt="Изменить фото" class="profile__symbol profile__symbol_pencil_type_avatar">
+              <div class="profile__overlay"></div>
+            </button>
             <div class="profile__info">
                 <div class="profile__name-edit">
-                  <h1 class="profile__name">Жак-Ив Кусто</h1>
+                  <h1 class="profile__name">Имя</h1>
                   <button class="profile__edit-button" type="button">
-                    <img src="<%=require('./images/pencil.png')%>" alt="Кнопка «Изменить»" class="profile__symbol profile__symbol_pencil">
+                    <img src="<%=require('./images/pencil.svg')%>" alt="Кнопка «Изменить»" class="profile__symbol profile__symbol_pencil_type_edit">
                   </button>
                 </div>
-              <p class="profile__description">Исследователь океана</p>
+              <p class="profile__description">Описание</p>
             </div>
           </div>
           <button class="profile__add-button" type="button">
             <img src="<%=require('./images/plus.png')%>" alt="Кнопка «Добавить»" class="profile__symbol profile__symbol_plus">
           </button>
         </section>
+
         <section class="elements">
         </section>
+
       </main>
+
       <footer class="footer">
-        <p class="footer__text">&copy; 2022 Mesto Russia</p>
+        <p class="footer__text">&copy; 2023 Mesto Russia</p>
       </footer>
+
       <div class="popup popup_type_edit">
         <div class="popup__container">
           <button class="popup__cross" type="button"></button>
@@ -48,6 +61,7 @@
           </form>
         </div>
       </div>
+
       <div class="popup popup_type_add">
         <div class="popup__container">
           <button class="popup__cross" type="button"></button>
@@ -61,6 +75,7 @@
           </form>
         </div>
       </div>
+
       <div class="popup popup_type_image">
         <div class="popup__figure">
           <img class="popup__image" src="Фото" alt="Фото элемента">
@@ -68,6 +83,27 @@
           <figcaption class="popup__figcaption"></figcaption>
         </div>
       </div>
+
+      <div class="popup popup_type_avatar">
+        <div class="popup__container">
+          <button class="popup__cross" type="button"></button>
+          <p class="popup__title">Обновить аватар</p>
+          <form class="popup__form" name="avatarform" novalidate>
+            <input id="avatar-input" type="url" class="popup__input popup__input_field_avatar" name="avatar" placeholder="Ссылка на картинку" required>
+            <span class="input-error avatar-input-error"></span>
+            <button type="submit" class="popup__button">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_type_delete">
+        <div class="popup__container">
+          <button class="popup__cross" type="button"></button>
+          <p class="popup__title popup__title_type_delete">Вы уверены?</p>
+            <button type="submit" class="popup__button popup__button_type_delete">Да</button>
+        </div>
+      </div>
+
     </div>
     <template id="card-template" class="template_type_default">
       <div class="card">
@@ -75,7 +111,10 @@
         <img class="card__picture" src="-" alt="Фото элемента">
         <div class="card__under-picture">
           <h2 class="card__text"></h2>
-          <button class="card__like" type="button"></button>
+          <div class="card__like-container">
+            <button class="card__like" type="button"></button>
+            <span class="card__like-counter">5555</span>
+          </div>
         </div>
       </div>
     </template>
