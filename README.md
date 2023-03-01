@@ -2,35 +2,33 @@
 
 ## Обзор (Ru)
 
-  Данный проект создан с целью тренировки основных навыков работы со скриптами и с языком JavaScript,
-а также получения опыта работы с ветками Git, укрепления навыков вёрстки и обращения с HTML и CSS.
+  Данный проект создан с целью тренировки навыков работы с языком JavaScript, получения опыта
+работы с ветками Git, укрепления навыков вёрстки и обращения с HTML и CSS, а также
+освоения базовых вещей в работе с Api.
 
-  По умолчанию на сайте размещен профиль исследователя океана Жака-Ив Кусто, а также 6 известных
-российских мест, которые являются народным достоянием и рекомендуются к посещению. На данный момент
-благодаря скрипту имеется возможность редактирования профиля. Имя и описание профиля можно изменить
-во всплывающем окне. С новым коммитом было добавлено 2 новых попапа. Первый позволяет добавить
-новую фотографию с названием, второй даёт возможность полностью разглядеть фотографию. Также
-появилась возможность удалять элементы и ставить им лайк.
+  Сайт подключен к серверу Яндекс Практикума и имеет свой токен для авторизации, описанный в
+константе "options" в файле index.js. Для каждого ученика 60й когорты был выдан свой токен, поэтому если вы решили протестировать данный проект на GitHub Pages с моим токеном, то прошу вас не добавлять материалы недопустимого характера.
 
-  Проект __Место__ функционирует на современных браузерах, поддерживается языком HTML5.
-В структуре проекта на данный момент имеется 7 основных элементов - header, секция profile, секция
-elements, footer и 3 всплывающих окна popup.
+  Проект __Место__ функционирует на любых браузерах и на любых их версиях, поддерживается языком HTML5, 
+использует современный синтаксис ES6. Сайт написан по методологии БЭМ Nested и использует слабое связывание классов.
+
+
+  В визуальной части проекта на данный момент имеется 9 основных элементов - header, секция profile, секция
+elements, footer и 5 всплывающих окон popup. Также проект имеет 9 компонентов - класс "Popup" и 3 наследуемых от него класса. Данные компоненты описывают методы работы всплывающих окон. Имеется класс Api, который описывает методы, связанные с обращением к серверу; класс Card, оживляющий элементы на странице; класс FormValidator, который настраивает собственную валидацию полей формы; класс Section, отвечающий за отрисовку карточек на странице; ну и наконец класс UserInfo, отвечающий за получение и изменение информации вашего профиля.
 
 ## Review (Eng)
 
-  This project was created to train the basic skills of working with scripts and JavaScript,
-as well as gain experience working with Git branches, strengthen the skills of layout and handling HTML and CSS.
+  This project was created to train skills in working with the JavaScript language, gain experience
+working with Git branches, strengthen the skills of layout and handling HTML and CSS, as well
+as mastering the basic things in working with the Api.
 
-  By default, the site has a profile of the ocean explorer Jacques-Yves Cousteau, as well as 6 famous
-Russian places that are national property and are recommended to visit. At the moment, thanks to the script,
-it is possible to edit the profile. The profile name and description can be changed in the pop-up window. 
-With the new commit, 2 new popups were added. The first allows you to adda new photo with the name, 
-the second makes it possible to fully see the photo. It is also now possible to delete items and put likes
-on them.
+The site is connected to the Yandex Practicum server and has its own token for authorization, described in
+the "options" constant in the file "index.js" . A token was issued for each student of the 60th cohort, so if you decided to test this project on GitHub Pages with my token, then I ask you not to add materials of an unacceptable nature.
 
-  The __Place__ project functions on modern browsers. It is supported by HTML5.
-The project structure currently has 7 main elements - header, profile section
-, elements section, footer and 3 popup windows.
+The __Place__ project functions on any browsers and on any of their versions, it is supported by the HTML5 language, uses modern ES6 syntax. The site is written according to the BEM Nested methodology and uses weak class binding.
+
+
+At the moment there are 9 main elements in the visual part of the project - header, profile section, section elements, footer and 5 popup popups. The project also has 9 components - the "Popup" class and 3 classes inherited from it. These components describe the methods of pop-up windows. There is an Api class that describes methods related to accessing the server; a Card class that animates elements on the page; a FormValidator class that configures its own validation of form fields; a Section class responsible for drawing cards on the page; and finally a userInfo class responsible for receiving and changing your profile information.
 
 ## Ссылка на GitHub Pages (GitHub Pages link):
-https://nasdermn.github.io/mesto/index.html
+https://nasdermn.github.io/mesto
