@@ -10,5 +10,5 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
