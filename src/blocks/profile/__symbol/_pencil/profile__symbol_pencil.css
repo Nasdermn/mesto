@@ -1,9 +1,9 @@
-.profile__symbol_pencil_type_edit {
+.profile__symbol_pencil {
   width: 10px;
   height: 10px;
 }
 @media screen and (max-width:680px){
-  .profile__symbol_pencil_type_edit{
+  .profile__symbol_pencil{
     width: 7.5px;
     height: 7.5px;
   }
