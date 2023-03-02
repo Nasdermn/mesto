@@ -10,7 +10,7 @@ export default class PopupWithForm extends Popup {
     this._buttonText = this._popupButton.textContent;
   }
 
-  _handleLoading(isLoading) {
+  handleLoading(isLoading) {
     if (isLoading) {
       this._popupButton.textContent = 'Сохранение...';
     } else {
@@ -28,11 +28,7 @@ export default class PopupWithForm extends Popup {
   
   _submitForm(evt) {
     evt.preventDefault();
-    this._handleLoading(true);
     this._handleFormSubmit(this.getInputValues())
-      .then(()=>this.close())
-      .catch(()=>console.log('Ошибка при сабмите формы'))
-      .finally(()=>this._handleLoading(false));
   }
 
   setEventListeners() {

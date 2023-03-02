@@ -1,9 +1,9 @@
 import Popup from "./Popup.js";
-import { api } from "../pages/index.js";
 
 export default class PopupWithButton extends Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector, buttonHandle) {
     super(popupSelector);
+    this._buttonHandle = buttonHandle;
     this._button = this._popup.querySelector('.popup__button');
   }
 
@@ -21,16 +21,18 @@ export default class PopupWithButton extends Popup {
 
   setEventListeners() {
     this._button.addEventListener('click', () => {
-      api.deleteCard(this._id);
-      this._card.remove();
+      this._buttonHandle();
     });
     super.setEventListeners();
   }
 
+  removeCard() {
+    this._card.remove();
+  }
+
   removeEventListeners() {
     this._button.removeEventListener('click', () => {
-      api.deleteCard(this._id);
-      this._card.remove();
+      this._buttonHandle();
     });
     super.removeEventListeners();
   }

@@ -37,7 +37,7 @@ export default class Card {
 
     //Если находим в массиве лайков карточки лайк с нашим айди - при отрисовке карточек кнопка лайка будет активна
     if (this._likes.findIndex(e => e._id === this._userId) !== -1) {
-      this._like.classList.add('card__like_active');
+      this.handleLikeButton();
     }
     //Если айди карточки не совпадает с нашим айди, делаем иконку корзины невидимой
     if (this._ownerId != this._userId) {
@@ -49,7 +49,7 @@ export default class Card {
 
   _setEventListeners() {
     this._like.addEventListener('click', () => {
-      this._handleLikeButton();
+      this._handleLikeClick();
     })
 
     this._remove.addEventListener('click', () => {
@@ -61,27 +61,25 @@ export default class Card {
     })
   }
 
-  _handleLikeButton() {
-    if (this._like.classList.contains('card__like_active'))
-    {
+  _handleLikeClick() {
+    if (this._like.classList.contains('card__like_active')) {
       this._handleDislike(this._id)
-        .then(data => {
-          this._likeCounter.textContent = data.likes.length;
-        })
-        .catch(() => {
-          console.log(`Ошибка при дизлайке карточки`);
-        })
-    } 
+    }
     else {
       this._handleLike(this._id)
-        .then(data => {
-          this._likeCounter.textContent = data.likes.length;
-        })
-        .catch(() => {
-          console.log(`Ошибка при лайке карточки`);
-        })
     }
-    this._like.classList.toggle('card__like_active');
+  }
+
+  handleLikeButton() {
+    this._like.classList.add('card__like_active');
+  }
+
+  handleDislikeButton() {
+    this._like.classList.remove('card__like_active');
+  }
+
+  handleCounter(data) {
+    this._likeCounter.textContent = data.likes.length;
   }
 
   _handleTrashcanClick() {
