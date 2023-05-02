@@ -1,4 +1,4 @@
-# Project-Mesto
+# Project-Mesto - OOP version with api and validation
 
 ## Обзор (Ru)
 
@@ -29,6 +29,12 @@ The __Place__ project functions on any browsers and on any of their versions, it
 
 
 At the moment there are 9 main elements in the visual part of the project - header, profile section, section elements, footer and 5 popup popups. The project also has 9 components - the "Popup" class and 3 classes inherited from it. These components describe the methods of pop-up windows. There is an Api class that describes methods related to accessing the server; a Card class that animates elements on the page; a FormValidator class that configures its own validation of form fields; a Section class responsible for drawing cards on the page; and finally a userInfo class responsible for receiving and changing your profile information.
+
+## Все версии проекта (All versions of this project)
+1. [Mesto Classic](https://github.com/Nasdermn/mesto-classic)
+2. Mesto OOP
+3. [Mesto React](https://github.com/Nasdermn/mesto-react)
+4. [Mesto with registration and authorization](https://github.com/Nasdermn/react-mesto-auth)
 
 ## Ссылка на GitHub Pages (GitHub Pages link):
 https://nasdermn.github.io/mesto
